@@ -10,12 +10,12 @@ const Header = () => (
         Async Race
       </Typography>
       <Link href="https://github.com/diXrom" target="_blank" rel="noopener" underline="none">
-        <Typography variant="h6" component="div" sx={{ mr: 2, color: '#F3E600' }}>
+        <Typography variant="h6" component="div" color="secondary" sx={{ mr: 2 }}>
           Garage
         </Typography>
       </Link>
       <Link href="https://github.com/diXrom" target="_blank" rel="noopener" underline="none">
-        <Typography variant="h6" component="div" sx={{ color: '#F3E600' }}>
+        <Typography variant="h6" component="div" color="secondary">
           Winners
         </Typography>
       </Link>

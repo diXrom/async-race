@@ -6,21 +6,22 @@ import Footer from './Footer';
 import ErrorBoundry from './ErrorBoundry';
 
 import theme from '../util/theme';
+import { mainStyle } from '../util/styles';
 
-function App() {
+import Race from './Race';
+
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ErrorBoundry>
-        <Box sx={{ display: 'grid', gridTemplateRows: '70px 1fr 70px', minHeight: '100vh' }}>
+        <Box sx={mainStyle}>
           <Header />
-          <Container maxWidth="xl">
-            <div className="App">Hello</div>
-          </Container>
+          <Race />
           <Footer />
         </Box>
       </ErrorBoundry>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
