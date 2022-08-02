@@ -28,8 +28,10 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    'max-lines-per-function': ['error', 40],
     'prettier/prettier': [
-      'error',
+      'warn',
       {
         endOfLine: 'auto',
         arrowParens: 'always',
