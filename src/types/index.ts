@@ -14,7 +14,22 @@ export interface ICarResult {
 export interface ICarItemControls {
   id: string;
   name: string;
-  status: string;
-  carStart: (mood: string) => void;
-  carStop: (mood: string) => void;
+  carStart: () => void;
+  carStop: () => void;
+}
+
+export interface ICarsPagination {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  data:
+    | {
+        apiResponse: ICar[];
+        totalCount: number;
+      }
+    | undefined;
+}
+
+export interface IRaceBtns {
+  race: string;
+  setRace: React.Dispatch<React.SetStateAction<string>>;
 }
