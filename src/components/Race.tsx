@@ -1,4 +1,5 @@
-import { Container, Divider, Typography } from '@mui/material';
+import { Container } from '@mui/material';
+
 import RacePanel from './RacePanel/RacePanel';
 import CarPanel from './CarPanel/CarPanel';
 

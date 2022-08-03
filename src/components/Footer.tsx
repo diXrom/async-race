@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Toolbar, Typography, Link, SvgIcon } from '@mui/material';
+
 import { ReactComponent as RSS } from '../assets/logo_RSS.svg';
 
 const Footer = () => (
