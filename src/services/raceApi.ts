@@ -14,26 +14,15 @@ export const raceApi = createApi({
       providesTags: () => ['cars']
     }),
     addCar: build.mutation<ICar, ICar>({
-      query: (body) => ({
-        url: 'garage',
-        method: 'POST',
-        body
-      }),
+      query: (body) => ({ url: 'garage', method: 'POST', body }),
       invalidatesTags: ['cars']
     }),
     updateCar: build.mutation<ICar, ICar>({
-      query: (body) => ({
-        url: `garage/${body.id}`,
-        method: 'PUT',
-        body
-      }),
+      query: (body) => ({ url: `garage/${body.id}`, method: 'PUT', body }),
       invalidatesTags: ['cars']
     }),
     deleteCar: build.mutation<ICar, string>({
-      query: (id) => ({
-        url: `garage/${id}`,
-        method: 'DELETE'
-      }),
+      query: (id) => ({ url: `garage/${id}`, method: 'DELETE' }),
       invalidatesTags: ['cars']
     })
   })
