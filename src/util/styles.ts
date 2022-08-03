@@ -17,4 +17,18 @@ const finishStyle = {
   width: '50px',
   height: '50px'
 };
-export { mainStyle, colorPicker, finishStyle };
+const error = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 800,
+  bgcolor: 'white',
+  color: 'black',
+  border: '3px solid #F3E600',
+  borderRadius: '10px',
+  boxShadow: 24,
+  p: 4
+};
+
+export { mainStyle, colorPicker, finishStyle, error };
