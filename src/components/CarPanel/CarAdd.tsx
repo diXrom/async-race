@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react';
-import { Grid, TextField, Button } from '@mui/material';
+import { Grid, Button } from '@mui/material';
 
 import { useAddCarMutation } from '../../services/raceApi';
-import { colorPicker } from '../../util/styles';
+import CarFields from './CarFields';
 
 const CarAdd = () => {
   const [addCar] = useAddCarMutation();
@@ -13,22 +13,7 @@ const CarAdd = () => {
   };
   return (
     <Fragment>
-      <Grid item xs={9}>
-        <TextField
-          label="Name"
-          variant="standard"
-          value={name}
-          onChange={(e) => setCar((state) => ({ ...state, name: e.target.value }))}
-        />
-      </Grid>
-      <Grid item xs={3}>
-        <input
-          type="color"
-          style={colorPicker}
-          value={color}
-          onChange={(e) => setCar((state) => ({ ...state, color: e.target.value }))}
-        />
-      </Grid>
+      <CarFields name={name} color={color} setCar={setCar} />
       <Grid item xs={6}>
         <Button
           disabled={!name.length}
