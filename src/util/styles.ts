@@ -31,11 +31,17 @@ const mainStyle = {
   minHeight: '100vh',
   gap: '30px'
 };
-const colorPicker = {
-  backgroundColor: 'inherit',
-  width: '40px',
-  border: '2px solid #CCC',
-  borderRadius: '5px'
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 350,
+  bgcolor: 'background.paper',
+  border: '2px solid #F3E600',
+  borderRadius: '10px',
+  boxShadow: 24,
+  p: 4
 };
 const finishStyle = {
   position: 'absolute',
@@ -43,6 +49,12 @@ const finishStyle = {
   top: '-55px',
   width: '50px',
   height: '50px'
+};
+const colorPicker = {
+  backgroundColor: 'inherit',
+  width: '40px',
+  border: '2px solid #CCC',
+  borderRadius: '5px'
 };
 const error = {
   position: 'absolute',
@@ -58,4 +70,4 @@ const error = {
   p: 4
 };
 
-export { mainStyle, colorPicker, finishStyle, error, theme };
+export { mainStyle, colorPicker, finishStyle, error, theme, modalStyle };
