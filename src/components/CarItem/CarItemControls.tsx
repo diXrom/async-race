@@ -1,9 +1,10 @@
 import { FC, memo, useState } from 'react';
-import { Stack, IconButton, Typography } from '@mui/material';
+import { Stack, IconButton, Typography, Divider } from '@mui/material';
 import { Delete, Settings } from '@mui/icons-material';
 
 import CarItemBtns from './CarItemBtns';
-import ModalCarUpdate from '../RacePanel/ModalCarUpdate';
+import CarUpdate from '../CarPanel/CarUpdate';
+import ModalInfo from '../ModalInfo';
 
 import { useDeleteCarMutation } from '../../services/raceApi';
 import { ICarItemControls } from '../../types';
@@ -24,7 +25,14 @@ const CarItemControls: FC<ICarItemControls> = ({ id, name, carStart, carStop }) 
       <Typography variant="body1" component="div" sx={{ ml: 1 }}>
         {name}
       </Typography>
-      <ModalCarUpdate id={id} open={open} setOpen={setOpen} />
+      <ModalInfo open={open} setOpen={setOpen}>
+        <Divider>
+          <Typography variant="h6" component="div">
+            Update settings
+          </Typography>
+        </Divider>
+        <CarUpdate id={id} setOpen={setOpen} />
+      </ModalInfo>
     </Stack>
   );
 };

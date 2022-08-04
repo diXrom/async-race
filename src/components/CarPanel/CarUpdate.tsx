@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { Button, Grid } from '@mui/material';
 
-import CarFields from '../CarPanel/CarFields';
+import CarFields from './CarFields';
 
 import { useUpdateCarMutation } from '../../services/raceApi';
 import { ICarUpdate } from '../../types';

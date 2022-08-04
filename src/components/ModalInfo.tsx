@@ -1,13 +1,11 @@
 import { FC } from 'react';
-import { Modal, Box, Backdrop, Typography, Divider } from '@mui/material';
+import { Modal, Box, Backdrop } from '@mui/material';
 import { motion } from 'framer-motion';
 
-import CarUpdate from './CarUpdate';
+import { IModal } from '../types';
+import { modalStyle } from '../util/styles';
 
-import { IModalCarUpdate } from '../../types';
-import { modalStyle } from '../../util/styles';
-
-const ModalCarUpdate: FC<IModalCarUpdate> = ({ open, setOpen, id }) => {
+const ModalInfo: FC<IModal> = ({ open, setOpen, children }) => {
   return (
     <Modal
       open={open}
@@ -26,15 +24,10 @@ const ModalCarUpdate: FC<IModalCarUpdate> = ({ open, setOpen, id }) => {
         transition={{ duration: 0.5 }}
         sx={modalStyle}
       >
-        <Divider>
-          <Typography variant="h6" component="div">
-            Update settings
-          </Typography>
-        </Divider>
-        <CarUpdate id={id} setOpen={setOpen} />
+        {children}
       </Box>
     </Modal>
   );
 };
 
-export default ModalCarUpdate;
+export default ModalInfo;
