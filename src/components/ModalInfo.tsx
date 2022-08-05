@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { IModal } from '../types';
 import { modalStyle } from '../util/styles';
 
-const ModalInfo: FC<IModal> = ({ open, setOpen, children }) => {
+const ModalInfo: FC<IModal> = ({ open, handlerClose, children }) => {
   return (
     <Modal
       open={open}
-      onClose={() => setOpen(false)}
+      onClose={handlerClose}
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{

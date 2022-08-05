@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Divider, Stack, Typography } from '@mui/material';
+import { Divider, Stack, Typography, Button } from '@mui/material';
 
 import CarsPagination from './CarsPagination';
 import CarItem from '../CarItem/CarItem';
@@ -19,14 +19,19 @@ const RacePanel = () => {
   const [page, setPage] = useState(1);
   const [race, setRace] = useState('');
   const [open, setOpen] = useState(false);
+  const [winners, setWinners] = useState<ICarWinner[]>([]);
   const { data } = useGetCarsQuery(page);
   const { data: winnersData } = useGetWinnersQuery(0);
   const [createWinner] = useCreateWinnerMutation();
   const [updateWinner] = useUpdateWinnerMutation();
-  const [winners, setWinners] = useState<ICarWinner[]>([]);
   useEffect(() => {
     setWinner(setOpen, createWinner, updateWinner, winners, winnersData, data);
   }, [createWinner, data, updateWinner, winners, winnersData]);
+  const handlerClose = () => {
+    setRace('');
+    setWinners([]);
+    setOpen(false);
+  };
   return (
     <Stack spacing={2}>
       <RaceBtns race={race} setRace={setRace} />
@@ -34,7 +39,7 @@ const RacePanel = () => {
       {data?.apiResponse.map((item) => (
         <CarItem key={item.id} setWinner={setWinners} race={race} {...item} />
       ))}
-      <ModalInfo open={open} setOpen={setOpen}>
+      <ModalInfo open={open} handlerClose={handlerClose}>
         <Divider>
           <Typography variant="h6" component="div">
             Winner
@@ -43,6 +48,9 @@ const RacePanel = () => {
         <Typography variant="body1" component="div" sx={{ textAlign: 'center' }}>
           {winners.length && getModalWinner(winners)}
         </Typography>
+        <Button onClick={handlerClose} sx={{ ml: 'auto', mt: 1 }}>
+          Close
+        </Button>
       </ModalInfo>
     </Stack>
   );
