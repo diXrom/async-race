@@ -1,9 +1,9 @@
 import { Container } from '@mui/material';
 
-import RacePanel from './RacePanel/RacePanel';
-import CarPanel from './CarPanel/CarPanel';
+import RacePanel from '../RacePanel/RacePanel';
+import CarPanel from '../CarPanel/CarPanel';
 
-const Race = () => {
+const Garage = () => {
   return (
     <Container maxWidth="xl">
       <CarPanel />
@@ -12,4 +12,4 @@ const Race = () => {
   );
 };
 
-export default Race;
+export default Garage;
