@@ -10,7 +10,7 @@ const CarFields: FC<ICarFields> = ({ name, color, setCar }) => {
       <Grid item xs={9}>
         <TextField
           color="secondary"
-          label="Rename"
+          label="Name"
           variant="standard"
           value={name}
           onChange={(e) => setCar((state) => ({ ...state, name: e.target.value }))}

@@ -13,7 +13,7 @@ const CarPanel = () => {
         </Typography>
       </Divider>
       <Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
-        <Grid container spacing={1} alignItems="flex-end" sx={{ width: '350px' }}>
+        <Grid container spacing={2} alignItems="flex-end" sx={{ width: '350px' }}>
           <CarAdd />
           <Grid item xs={6}>
             <CarsGenerate />
