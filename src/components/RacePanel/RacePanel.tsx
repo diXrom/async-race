@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Divider, Stack, Typography, Button } from '@mui/material';
 
 import CarsPagination from './CarsPagination';
@@ -6,27 +5,14 @@ import CarItem from '../CarItem/CarItem';
 import RaceBtns from './RaceBtns';
 import ModalInfo from '../ModalInfo';
 
-import { ICarWinner } from '../../types';
-import { getModalWinner, setWinner } from '../../util/helperFunctions';
-import {
-  useCreateWinnerMutation,
-  useGetCarsQuery,
-  useGetWinnersQuery,
-  useUpdateWinnerMutation
-} from '../../services/raceApi';
+import { getModalWinner } from '../../util/helperFunctions';
+import useLocalStorage from '../hooks/useLocalStorage';
+
+import useWinners from '../hooks/useWinners';
 
 const RacePanel = () => {
-  const [page, setPage] = useState(1);
-  const [race, setRace] = useState('');
-  const [open, setOpen] = useState(false);
-  const [winners, setWinners] = useState<ICarWinner[]>([]);
-  const { data } = useGetCarsQuery(page);
-  const { data: winnersData } = useGetWinnersQuery(0);
-  const [createWinner] = useCreateWinnerMutation();
-  const [updateWinner] = useUpdateWinnerMutation();
-  useEffect(() => {
-    setWinner(setOpen, createWinner, updateWinner, winners, winnersData, data);
-  }, [createWinner, data, updateWinner, winners, winnersData]);
+  const [page, setPage] = useLocalStorage(1, '_garagePage');
+  const { open, race, winners, data, setOpen, setRace, setWinners } = useWinners(page);
   const handlerClose = () => {
     setRace('');
     setWinners([]);
