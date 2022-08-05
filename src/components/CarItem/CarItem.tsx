@@ -14,8 +14,8 @@ const CarItem: FC<ICarItem> = ({ id = '', name, color, race, setWinner }) => {
   const { innerWidth: width } = window;
   const controls = useAnimationControls();
   const start = useCallback(
-    () => carStart(controls, id, width, setWinner),
-    [controls, setWinner, id, width]
+    () => carStart(controls, id, name, width, setWinner, race),
+    [controls, setWinner, id, name, width, race]
   );
   const stop = useCallback(() => carStop(controls, id), [controls, id]);
   useLayoutEffect(() => {
@@ -25,7 +25,7 @@ const CarItem: FC<ICarItem> = ({ id = '', name, color, race, setWinner }) => {
 
   return (
     <Stack>
-      <CarItemControls id={id} name={name} carStart={start} carStop={stop} />
+      <CarItemControls id={id} race={race} name={name} carStart={start} carStop={stop} />
       <Box component={motion.div} animate={controls} sx={{ width: '150px', height: '50px' }}>
         <SvgIcon component={f1} sx={{ width: '150px', height: '50px', color }} inheritViewBox />
       </Box>

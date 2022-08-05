@@ -6,26 +6,39 @@ import CarItemBtns from './CarItemBtns';
 import CarUpdate from '../CarPanel/CarUpdate';
 import ModalInfo from '../ModalInfo';
 
-import { useDeleteCarMutation } from '../../services/raceApi';
+import { useDeleteCarMutation, useDeleteWinnerMutation } from '../../services/raceApi';
 import { ICarItemControls } from '../../types';
 
-const CarItemControls: FC<ICarItemControls> = ({ id, name, carStart, carStop }) => {
+const CarItemControls: FC<ICarItemControls> = ({ id, race, name, carStart, carStop }) => {
   const [status, setStatus] = useState(false);
   const [open, setOpen] = useState(false);
   const [deleteCar] = useDeleteCarMutation();
+  const [deleteWinners] = useDeleteWinnerMutation();
+  const handlerClose = () => setOpen(false);
   return (
     <Stack direction="row" sx={{ alignItems: 'center' }}>
-      <IconButton onClick={() => deleteCar(id)}>
+      <IconButton
+        onClick={() => {
+          deleteCar(id);
+          deleteWinners(id);
+        }}
+      >
         <Delete color="secondary" />
       </IconButton>
       <IconButton onClick={() => setOpen(true)}>
         <Settings color="secondary" />
       </IconButton>
-      <CarItemBtns carStart={carStart} carStop={carStop} status={status} setStatus={setStatus} />
+      <CarItemBtns
+        race={race}
+        carStart={carStart}
+        carStop={carStop}
+        status={status}
+        setStatus={setStatus}
+      />
       <Typography variant="body1" component="div" sx={{ ml: 1 }}>
         {name}
       </Typography>
-      <ModalInfo open={open} setOpen={setOpen}>
+      <ModalInfo open={open} handlerClose={handlerClose}>
         <Divider>
           <Typography variant="h6" component="div">
             Update settings

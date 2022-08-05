@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 
 import { ICarItemBtns } from '../../types';
 
-const CarItemBtns: FC<ICarItemBtns> = ({ carStart, carStop, setStatus, status }) => {
+const CarItemBtns: FC<ICarItemBtns> = ({ carStart, carStop, setStatus, status, race }) => {
   return (
     <Fragment>
       <Button
@@ -14,7 +14,7 @@ const CarItemBtns: FC<ICarItemBtns> = ({ carStart, carStop, setStatus, status })
         }}
         size="small"
         endIcon={<Flag color="secondary" />}
-        disabled={status}
+        disabled={status || race === 'started'}
       >
         Start
       </Button>
