@@ -1,10 +1,11 @@
+import { Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 
 import ErrorBoundry from './ErrorBoundry';
-import Header from './Header';
-import Footer from './Footer';
-import Race from './Race';
+import Garage from './Pages/Garage';
+import Winners from './Pages/Winners';
+import Layout from './Layout';
 
 import { mainStyle, theme } from '../util/styles';
 
@@ -13,9 +14,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <ErrorBoundry>
         <Box sx={mainStyle}>
-          <Header />
-          <Race />
-          <Footer />
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Garage />} />
+              <Route path="winners" element={<Winners />} />
+            </Route>
+          </Routes>
         </Box>
       </ErrorBoundry>
     </ThemeProvider>

@@ -1,5 +1,6 @@
 import { memo } from 'react';
-import { AppBar, Toolbar, Typography, Link } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 
 import { Flag } from '@mui/icons-material';
 
@@ -10,16 +11,16 @@ const Header = () => (
       <Typography variant="h6" component="h3" sx={{ flexGrow: 1 }}>
         Async Race
       </Typography>
-      <Link href="https://github.com/diXrom" target="_blank" rel="noopener" underline="none">
-        <Typography variant="h6" component="div" color="secondary" sx={{ mr: 2 }}>
+      <NavLink to="/">
+        <Typography variant="h6" component="div" color="inherit" sx={{ mr: 2 }}>
           Garage
         </Typography>
-      </Link>
-      <Link href="https://github.com/diXrom" target="_blank" rel="noopener" underline="none">
-        <Typography variant="h6" component="div" color="secondary">
+      </NavLink>
+      <NavLink to="/winners">
+        <Typography variant="h6" component="div" color="inherit">
           Winners
         </Typography>
-      </Link>
+      </NavLink>
     </Toolbar>
   </AppBar>
 );
