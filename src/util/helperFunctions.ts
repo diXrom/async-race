@@ -1,16 +1,7 @@
+import { FetchBaseQueryMeta } from '@reduxjs/toolkit/dist/query/react';
 import { AnimationControls } from 'framer-motion';
 import { carBrand, carModal } from '../data';
-import {
-  ICarSpeed,
-  ICarResult,
-  ICarWinner,
-  IWinner,
-  UpdateWinner,
-  CreateWinner,
-  ICar,
-  WinnersData,
-  CarData
-} from '../types';
+import { ICarSpeed, ICarResult, ICarWinner, IWinner, ICar } from '../types';
 
 const CONTAINER_WIDTH = 1536;
 const CAR_WIDTH = 210;
@@ -37,7 +28,7 @@ const getRandomName = (lengthBrand: number, lengthModal: number) => {
 const getWinner = (winners: ICarWinner[]): IWinner | null => {
   const winner = winners.filter((item) => item.time).sort((a, b) => a.time - b.time)[0];
   if (!winner) return null;
-  return { id: Number(winner.id), time: Number(winner.time.toFixed(2)), wins: 1 };
+  return { id: Number(winner.id), wins: 1, time: Number(winner.time.toFixed(2)) };
 };
 
 const getModalWinner = (winners: ICarWinner[]) => {
@@ -64,22 +55,26 @@ const getResult = async (id: string) => {
   return data.success;
 };
 
+const getransformResponse = (apiResponse: ICar[], meta: FetchBaseQueryMeta | undefined) => ({
+  apiResponse,
+  totalCount: Number(meta?.response?.headers.get('X-Total-Count'))
+});
+
 const carStart = async (
   controls: AnimationControls,
   id: string,
   name: string,
   width: number,
-  setWinner: React.Dispatch<React.SetStateAction<ICarWinner[]>>
+  setWinner: React.Dispatch<React.SetStateAction<ICarWinner[]>>,
+  race: string
 ) => {
   const carRaceData = await getRaceData(id, 'started');
   const time = getTime(carRaceData);
   controls.start({ x: getWidth(width), transition: { duration: time } });
   const result = await getResult(id);
-  if (result) setWinner((state) => [...state, { id, name, time }]);
-  if (!result) {
-    setWinner((state) => [...state, { id, name, time: 0 }]);
-    controls.stop();
-  }
+  if (!result) controls.stop();
+  if (result && race === 'started') setWinner((state) => [...state, { id, name, time }]);
+  if (!result && race === 'started') setWinner((state) => [...state, { id, name, time: 0 }]);
 };
 
 const carStop = async (controls: AnimationControls, id: string) => {
@@ -88,38 +83,14 @@ const carStop = async (controls: AnimationControls, id: string) => {
   controls.start({ x: 0, transition: { duration: 2 } });
 };
 
-const setWinner = (
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>,
-  createWinner: CreateWinner,
-  updateWinner: UpdateWinner,
-  winners: ICarWinner[],
-  winnersData: WinnersData,
-  data: CarData
-) => {
-  if (winners.length === data?.apiResponse.length) {
-    setOpen(true);
-    const winner = getWinner(winners);
-    if (!winner) return;
-    const findWinner = winnersData?.apiResponse.find((item) => item.id === winner.id);
-    if (findWinner) {
-      updateWinner({
-        id: findWinner.id,
-        wins: findWinner.wins + 1,
-        time: Math.min(findWinner.time, winner.time)
-      });
-    }
-    if (!findWinner) createWinner(winner);
-  }
-};
-
 export {
   getRandomName,
+  getransformResponse,
   getRandomColor,
   getWidth,
   getCount,
   carStart,
   carStop,
   getWinner,
-  getModalWinner,
-  setWinner
+  getModalWinner
 };

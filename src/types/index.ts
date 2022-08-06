@@ -1,15 +1,9 @@
-import {
-  MutationDefinition,
-  BaseQueryFn,
-  FetchArgs,
-  FetchBaseQueryError,
-  FetchBaseQueryMeta
-} from '@reduxjs/toolkit/dist/query';
-import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
-
 interface ICar {
   id?: string;
   name: string;
+  color: string;
+}
+interface ICarIcon {
   color: string;
 }
 
@@ -55,7 +49,7 @@ interface IErrorState {
 interface IModal {
   children: JSX.Element[] | JSX.Element;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handlerClose: () => void;
 }
 
 interface ICarItem extends ICar {
@@ -66,6 +60,13 @@ interface ICarItem extends ICar {
 interface ICarItemControls {
   id: string;
   name: string;
+  race: string;
+  carStart: () => void;
+  carStop: () => void;
+}
+
+interface ICarItemBtns {
+  race: string;
   carStart: () => void;
   carStop: () => void;
 }
@@ -81,14 +82,9 @@ interface ICarFields {
   >;
 }
 
-interface ICarItemBtns {
-  carStart: () => void;
-  carStop: () => void;
-  setStatus: React.Dispatch<React.SetStateAction<boolean>>;
-  status: boolean;
-}
-
 interface ICarsPagination {
+  race: string;
+  setRace: React.Dispatch<React.SetStateAction<string>>;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   data:
@@ -99,39 +95,6 @@ interface ICarsPagination {
     | undefined;
 }
 
-type CreateWinner = MutationTrigger<
-  MutationDefinition<
-    IWinner,
-    BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>,
-    'cars' | 'winners',
-    IWinner,
-    'raceApi'
-  >
->;
-
-type UpdateWinner = MutationTrigger<
-  MutationDefinition<
-    IWinner,
-    BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>,
-    'cars' | 'winners',
-    IWinner,
-    'raceApi'
-  >
->;
-
-type WinnersData =
-  | {
-      apiResponse: IWinner[];
-      totalCount: number;
-    }
-  | undefined;
-type CarData =
-  | {
-      apiResponse: ICar[];
-      totalCount: number;
-    }
-  | undefined;
-
 export type {
   IErrorProps,
   IErrorState,
@@ -141,15 +104,12 @@ export type {
   ICarResult,
   ICarSpeed,
   ICar,
+  ICarIcon,
   IWinner,
   ICarUpdate,
   ICarWinner,
   ICarItem,
   IModal,
   ICarFields,
-  ICarItemBtns,
-  CreateWinner,
-  UpdateWinner,
-  WinnersData,
-  CarData
+  ICarItemBtns
 };

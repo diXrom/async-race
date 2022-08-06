@@ -32,6 +32,8 @@ const mainStyle = {
   gap: '30px'
 };
 const modalStyle = {
+  display: 'flex',
+  flexDirection: 'column',
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -41,7 +43,7 @@ const modalStyle = {
   border: '2px solid #F3E600',
   borderRadius: '10px',
   boxShadow: 24,
-  p: 4
+  p: 2
 };
 const finishStyle = {
   position: 'absolute',
