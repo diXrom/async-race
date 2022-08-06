@@ -1,8 +1,8 @@
 import { useCallback, useLayoutEffect } from 'react';
 import { useAnimationControls } from 'framer-motion';
 
-import { carStart, carStop } from '../../util/helperFunctions';
-import { ICarWinner } from '../../types';
+import { carStart, carStop } from '../util/helperFunctions';
+import { ICarWinner } from '../types';
 
 const useRaceAnimation = (
   id: string,
