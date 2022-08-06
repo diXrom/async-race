@@ -38,7 +38,7 @@ const getModalWinner = (winners: ICarWinner[]) => {
 };
 
 const getRaceData = async (id: string, status: string) => {
-  const response = await fetch(`http://localhost:3001/engine?id=${id}&status=${status}`, {
+  const response = await fetch(`http://localhost:3000/engine?id=${id}&status=${status}`, {
     method: 'PATCH'
   });
   if (!response.ok) throw new Error('Car with such id was not found in the garage');
@@ -47,7 +47,7 @@ const getRaceData = async (id: string, status: string) => {
 };
 
 const getResult = async (id: string) => {
-  const response = await fetch(`http://localhost:3001/engine?id=${id}&status=drive`, {
+  const response = await fetch(`http://localhost:3000/engine?id=${id}&status=drive`, {
     method: 'PATCH'
   });
   if (!response.ok) return false;
