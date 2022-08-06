@@ -1,12 +1,14 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { Grid, Button } from '@mui/material';
 
-import { useAddCarMutation } from '../../services/raceApi';
 import CarFields from './CarFields';
+
+import { useAddCarMutation } from '../../services/raceApi';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const CarAdd = () => {
   const [addCar] = useAddCarMutation();
-  const [{ name, color }, setCar] = useState({ name: '', color: '#ECECEC' });
+  const [{ name, color }, setCar] = useLocalStorage({ name: '', color: '#ECECEC' }, '_carData');
   const handleAddCar = async () => {
     await addCar({ name, color }).unwrap();
     setCar({ name: '', color: '#ECECEC' });

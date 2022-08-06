@@ -6,22 +6,22 @@ import RaceBtns from './RaceBtns';
 import ModalInfo from '../ModalInfo';
 
 import { getModalWinner } from '../../util/helperFunctions';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-import useWinners from '../hooks/useWinners';
+import useWinners from '../../hooks/useWinners';
 
 const RacePanel = () => {
   const [page, setPage] = useLocalStorage(1, '_garagePage');
-  const { open, race, winners, data, setOpen, setRace, setWinners } = useWinners(page);
+  const { open, race, winners, data, setOpen, setRace, setWinners } = useWinners(page, setPage);
   const handlerClose = () => {
-    setRace('');
+    setRace('pending');
     setWinners([]);
     setOpen(false);
   };
   return (
     <Stack spacing={2}>
       <RaceBtns race={race} setRace={setRace} />
-      <CarsPagination page={page} setPage={setPage} data={data} />
+      <CarsPagination race={race} setRace={setRace} page={page} setPage={setPage} data={data} />
       {data?.apiResponse.map((item) => (
         <CarItem key={item.id} setWinner={setWinners} race={race} {...item} />
       ))}
