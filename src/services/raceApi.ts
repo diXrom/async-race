@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ICar, IWinner } from '../types';
 
+import { getransformResponse } from '../util/helperFunctions';
+
 export const raceApi = createApi({
   reducerPath: 'raceApi',
   tagTypes: ['cars', 'winners'],
@@ -8,16 +10,11 @@ export const raceApi = createApi({
   endpoints: (build) => ({
     getCars: build.query<{ apiResponse: ICar[]; totalCount: number }, number>({
       query: (page) => (page ? `garage?_page=${page}&_limit=7` : 'garage'),
-      transformResponse(apiResponse: ICar[], meta) {
-        return { apiResponse, totalCount: Number(meta?.response?.headers.get('X-Total-Count')) };
-      },
+      transformResponse: getransformResponse,
       providesTags: () => ['cars']
     }),
-    getWinners: build.query<{ apiResponse: IWinner[]; totalCount: number }, number>({
+    getWinners: build.query<IWinner[], number>({
       query: (page) => (page ? `winners?_page=${page}&_limit=10` : 'winners'),
-      transformResponse(apiResponse: IWinner[], meta) {
-        return { apiResponse, totalCount: Number(meta?.response?.headers.get('X-Total-Count')) };
-      },
       providesTags: () => ['winners']
     }),
     addCar: build.mutation<ICar, ICar>({
