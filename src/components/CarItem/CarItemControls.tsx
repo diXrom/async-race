@@ -10,7 +10,6 @@ import { useDeleteCarMutation, useDeleteWinnerMutation } from '../../services/ra
 import { ICarItemControls } from '../../types';
 
 const CarItemControls: FC<ICarItemControls> = ({ id, race, name, carStart, carStop }) => {
-  const [status, setStatus] = useState(false);
   const [open, setOpen] = useState(false);
   const [deleteCar] = useDeleteCarMutation();
   const [deleteWinners] = useDeleteWinnerMutation();
@@ -18,6 +17,7 @@ const CarItemControls: FC<ICarItemControls> = ({ id, race, name, carStart, carSt
   return (
     <Stack direction="row" sx={{ alignItems: 'center' }}>
       <IconButton
+        disabled={race === 'started' || race === 'pending'}
         onClick={() => {
           deleteCar(id);
           deleteWinners(id);
@@ -25,16 +25,10 @@ const CarItemControls: FC<ICarItemControls> = ({ id, race, name, carStart, carSt
       >
         <Delete color="secondary" />
       </IconButton>
-      <IconButton onClick={() => setOpen(true)}>
+      <IconButton onClick={() => setOpen(true)} disabled={race === 'started' || race === 'pending'}>
         <Settings color="secondary" />
       </IconButton>
-      <CarItemBtns
-        race={race}
-        carStart={carStart}
-        carStop={carStop}
-        status={status}
-        setStatus={setStatus}
-      />
+      <CarItemBtns race={race} carStart={carStart} carStop={carStop} />
       <Typography variant="body1" component="div" sx={{ ml: 1 }}>
         {name}
       </Typography>

@@ -1,10 +1,11 @@
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useState } from 'react';
 import { Flag, DoDisturb } from '@mui/icons-material';
 import { Button } from '@mui/material';
 
 import { ICarItemBtns } from '../../types';
 
-const CarItemBtns: FC<ICarItemBtns> = ({ carStart, carStop, setStatus, status, race }) => {
+const CarItemBtns: FC<ICarItemBtns> = ({ carStart, carStop, race }) => {
+  const [status, setStatus] = useState(false);
   return (
     <Fragment>
       <Button
@@ -14,7 +15,7 @@ const CarItemBtns: FC<ICarItemBtns> = ({ carStart, carStop, setStatus, status, r
         }}
         size="small"
         endIcon={<Flag color="secondary" />}
-        disabled={status || race === 'started'}
+        disabled={status || race === 'started' || race === 'pending'}
       >
         Start
       </Button>
