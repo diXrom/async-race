@@ -189,7 +189,7 @@ const gridCarHeaders: GridColDef[] = [
     width: 240,
     sortable: false,
     headerAlign: 'center',
-    align: 'left'
+    align: 'center'
   },
   {
     field: 'wins',

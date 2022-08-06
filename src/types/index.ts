@@ -17,7 +17,10 @@ interface IWinner {
   time: number;
   wins: number;
 }
-
+interface IWinnersTable {
+  isLoadingWins: boolean;
+  wins: IWinner[] | undefined;
+}
 interface ICarWinner {
   id: string;
   time: number;
@@ -104,6 +107,7 @@ export type {
   ICarResult,
   ICarSpeed,
   ICar,
+  IWinnersTable,
   ICarIcon,
   IWinner,
   ICarUpdate,
