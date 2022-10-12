@@ -38,18 +38,24 @@ const getModalWinner = (winners: ICarWinner[]) => {
 };
 
 const getRaceData = async (id: string, status: string) => {
-  const response = await fetch(`http://localhost:3000/engine?id=${id}&status=${status}`, {
-    method: 'PATCH'
-  });
+  const response = await fetch(
+    `https://async-race-server-json.herokuapp.com/engine?id=${id}&status=${status}`,
+    {
+      method: 'PATCH'
+    }
+  );
   if (!response.ok) throw new Error('Car with such id was not found in the garage');
   const data: ICarSpeed = await response.json();
   return data;
 };
 
 const getResult = async (id: string) => {
-  const response = await fetch(`http://localhost:3000/engine?id=${id}&status=drive`, {
-    method: 'PATCH'
-  });
+  const response = await fetch(
+    `https://async-race-server-json.herokuapp.com/engine?id=${id}&status=drive`,
+    {
+      method: 'PATCH'
+    }
+  );
   if (!response.ok) return false;
   const data: ICarResult = await response.json();
   return data.success;

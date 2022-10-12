@@ -6,7 +6,7 @@ import { getransformResponse } from '../util/helperFunctions';
 export const raceApi = createApi({
   reducerPath: 'raceApi',
   tagTypes: ['cars', 'winners'],
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://async-race-server-json.herokuapp.com/' }),
   endpoints: (build) => ({
     getCars: build.query<{ apiResponse: ICar[]; totalCount: number }, number>({
       query: (page) => (page ? `garage?_page=${page}&_limit=7` : 'garage'),
