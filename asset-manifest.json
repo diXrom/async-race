@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/async-race/static/css/main.992ef3d9.css",
+    "main.js": "/async-race/static/js/main.6d415fb3.js",
+    "static/media/f1.svg": "/async-race/static/media/f1.e38f9e1438a308fe569d1f0b81eec8e1.svg",
+    "static/media/car_sound.mp3": "/async-race/static/media/car_sound.4b361749574fa770abc7.mp3",
+    "static/media/logo_RSS.svg": "/async-race/static/media/logo_RSS.6b45fc8242f760fb363606f8436badc6.svg",
+    "static/media/finish.svg": "/async-race/static/media/finish.267850f7e950a1392e2d5bca1991bf7d.svg",
+    "index.html": "/async-race/index.html",
+    "main.992ef3d9.css.map": "/async-race/static/css/main.992ef3d9.css.map",
+    "main.6d415fb3.js.map": "/async-race/static/js/main.6d415fb3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.992ef3d9.css",
+    "static/js/main.6d415fb3.js"
+  ]
+}
