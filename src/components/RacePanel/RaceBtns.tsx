@@ -6,7 +6,10 @@ import sound from '../../assets/car_sound.mp3';
 
 const RaceBtns: FC<IRaceBtns> = ({ setRace, race }) => {
   const [audio] = useState(new Audio(sound));
+  audio.volume = 0.3;
+
   useEffect(() => () => audio.pause(), [audio]);
+
   return (
     <Fragment>
       <Divider sx={{ mt: 2 }}>

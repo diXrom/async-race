@@ -39,7 +39,7 @@ const getModalWinner = (winners: ICarWinner[]) => {
 
 const getRaceData = async (id: string, status: string) => {
   const response = await fetch(
-    `https://async-race-server-json.herokuapp.com/engine?id=${id}&status=${status}`,
+    `https://net-qx9du58pt-adypr.vercel.app/engine?id=${id}&status=${status}`,
     {
       method: 'PATCH'
     }
@@ -51,7 +51,7 @@ const getRaceData = async (id: string, status: string) => {
 
 const getResult = async (id: string) => {
   const response = await fetch(
-    `https://async-race-server-json.herokuapp.com/engine?id=${id}&status=drive`,
+    `https://net-qx9du58pt-adypr.vercel.app/engine?id=${id}&status=drive`,
     {
       method: 'PATCH'
     }

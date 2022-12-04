@@ -29,7 +29,7 @@ module.exports = {
   rules: {
     'linebreak-style': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
-    'max-lines-per-function': ['error', 40],
+    'max-lines-per-function': ['error', 60],
     'prettier/prettier': [
       'warn',
       {
